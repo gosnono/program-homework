@@ -17,4 +17,4 @@ def submit(name: str, hot_date: str, tmax: float, cold_date: str, tmin: float) -
 
 
 if __name__ == "__main__":
-    submit("이재인", "2021-08-15", 40.1, "1978-01-04", -32.5)
+    submit("홍길동", "2021-08-15", 40.1, "1978-01-04", -32.5)
