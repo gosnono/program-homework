@@ -10,6 +10,11 @@ sns.set_style("white")
 plt.rcParams['font.family']=['NanumGothic', 'sans-serif']
 plt.rcParams['axes.unicode_minus'] = False
 
+from matplotlib import font_manager, rc
+font_path = "C:/Windows/Fonts/NGULIM.TTF"
+font = font_manager.FontProperties(fname=font_path).get_name()
+rc('font', family=font)
+
 df_popkr = pd.read_csv("202203_202203_연령별인구현황_월간.csv", encoding="euc-kr")
 df_popkr.head()
 
@@ -75,9 +80,8 @@ for ax in axs:
 fig.suptitle("                 전라북도", fontweight="bold")
 
 
-def plot_pop(loc, popmax=6e6, poptick=1e6):
+def plot_pop(loc, popmax, poptick):
     fig, axs = plt.subplots(ncols=2, sharey=True, figsize=(10, 5), gridspec_kw={"wspace": 0})
-
     c_M = "green"
     c_F = "darkorange"
     axs[0].barh(df_popkrMT["나이"], df_popkrMT[loc], color=c_M)
@@ -118,9 +122,13 @@ def plot_pop(loc, popmax=6e6, poptick=1e6):
 
     fig.suptitle(f"                 {loc}", fontweight="bold")
     fig.tight_layout()
-
+    plt.show()
     return fig
+def main():
+    loc =input("지역검색")
+    plot_pop(loc, popmax=6e6, poptick=1e6)
 
-fig = plot_pop("전라북도", popmax=1e6, poptick=2e5)
-plt.show()
 
+
+if __name__ == "__main__":
+    main()
