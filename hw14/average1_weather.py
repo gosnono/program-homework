@@ -53,39 +53,39 @@ def main():
     # 2) 데이터 읽기 (주의: 빈 데이터 처리하기)
     dates, tavg, tmin, tmax = read_data(filename)
 
-    year = int(input("연도: "))
-    month = int(input("월: "))
-    day = int(input("일: "))
+    day = int(input("해당 일: "))
+    month = int(input("해당 월: "))
+    year = int(input("해당 년: "))  # 해당값 입력
 
+    tavg_history = [x[1] for x in zip(dates, tavg) if
+                    (int(x[0][1]) == month) and (int(x[0][2]) == day)]  # 지정된 요일, 월의 온도리스트 추출
+    dates_history = [x[0] for x in zip(dates, tavg) if
+                     (int(x[0][1]) == month) and (int(x[0][2]) == day)]  # 지정된 요일 월의 날짜리스트 추출
+    tokens = sum(dates_history, [])  # 겉 [] 제거
 
-    tavg_history = [x[1] for x in zip(dates, tavg)
-                    if (int(x[0][1]) == month) and (int(x[0][2]) == day)]
-    dates_history = [x[0] for x in zip(dates, tavg)
-                     if (int(x[0][1]) == month) and (int(x[0][2]) == day)]
-    tokens = sum(dates_history, [])
+    year_token = tokens[0::3]  # years만 추출
 
-    year_token = tokens[0::3]
+    tavg_sorted = sorted(tavg_history, reverse=True)  # 내림차순으로 정렬
 
-    tavg_sorted = sorted(tavg_history, reverse=True)
-
-    tavg_history_pick = []
+    tavg_history_pick = 0
     for x in zip(dates, tavg):
         if (int(x[0][1]) == month) and (int(x[0][2]) == day) and (
-                int(x[0][0]) == year):
+                int(x[0][0]) == year):  # tavg_history의 다른 방식, year추가하여 1데이터만 추출됨
+            tavg_history_pick = x[1]
 
+    num_tavg = tavg_sorted.index(tavg_history_pick)  # 추출된 데이터의 인덱스 계산
 
-    # num_tavg = 어떻게 정의해야할지 모르겠습니다. tavg.sorted(float(tavg_history_pick))
+    print("{}-{}-{} 온도는 {}번째로 높습니다.".format(year, month, day, num_tavg))
 
-    print("{},{},{} 온도는 {}번째 높습니다.".format(year, month, day, num_tavg))
-
-    plt.plot(year_token, tavg_history, label="temp_avg", color="green")
+    plt.plot(year_token, tavg_history, label="temp_avg", color="red")  # 차트
     plt.title("temp_chart_list")
     plt.xlabel("year")
     plt.ylabel("temp")
-    plt.axhline(y=tavg_history_pick, color='pink', linestyle=':')
+    plt.axhline(y=tavg_history_pick, color='steelblue', linestyle=':')
     plt.xticks(tokens[0::6], rotation=90)
     plt.legend()
     plt.show()
 
-if __name__ =="__main__":
+if __name__ == "__main__":
     main()
+

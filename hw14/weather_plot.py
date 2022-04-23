@@ -1,7 +1,6 @@
 import os
 from typing import List
 
-import pit as pit
 import requests
 import matplotlib.pyplot as plt
 
@@ -53,39 +52,6 @@ def main():
     # 2) 데이터 읽기 (주의: 빈 데이터 처리하기)
     dates, tavg, tmin, tmax = read_data(filename)
 
-    year = int(input("연도: "))
-    month = int(input("월: "))
-    day = int(input("일: "))
 
-
-    tavg_history = [x[1] for x in zip(dates, tavg)
-                    if (int(x[0][1]) == month) and (int(x[0][2]) == day)]
-    dates_history = [x[0] for x in zip(dates, tavg)
-                     if (int(x[0][1]) == month) and (int(x[0][2]) == day)]
-    tokens = sum(dates_history, [])
-
-    year_token = tokens[0::3]
-
-    tavg_sorted = sorted(tavg_history, reverse=True)
-
-    tavg_history_pick = []
-    for x in zip(dates, tavg):
-        if (int(x[0][1]) == month) and (int(x[0][2]) == day) and (
-                int(x[0][0]) == year):
-
-
-    # num_tavg = 어떻게 정의해야할지 모르겠습니다. tavg.sorted(float(tavg_history_pick))
-
-    print("{},{},{} 온도는 {}번째 높습니다.".format(year, month, day, num_tavg))
-
-    plt.plot(year_token, tavg_history, label="temp_avg", color="green")
-    plt.title("temp_chart_list")
-    plt.xlabel("year")
-    plt.ylabel("temp")
-    plt.axhline(y=tavg_history_pick, color='pink', linestyle=':')
-    plt.xticks(tokens[0::6], rotation=90)
-    plt.legend()
-    plt.show()
-
-if __name__ =="__main__":
+if __name__ == "__main__":
     main()
