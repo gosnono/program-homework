@@ -72,7 +72,7 @@ def main():
     for x in zip(dates, tavg):
         if (int(x[0][1]) == month) and (int(x[0][2]) == day) and (
                 int(x[0][0]) == year):
-            tavg_history_pick = x[1]
+
 
     # num_tavg = 어떻게 정의해야할지 모르겠습니다. tavg.sorted(float(tavg_history_pick))
 
