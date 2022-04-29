@@ -58,7 +58,6 @@ class RegularHexagon(Shape):
         return self.r * 6
 
 
-
 def main():
     
     shapes = [Rectangle(4, 5),
@@ -70,6 +69,7 @@ def main():
         print(shape)
         print(shape.area())
         print(shape.perimeter())
+
 
 if __name__ == "__main__":
     main()
