@@ -6,7 +6,7 @@ import seaborn as sns
 
 
 class PopGraph:
-    def __init__(self, df_popkr):#데이터 전처리과정
+    def __init__(self, df_popkr):
         df_popkr = pd.read_csv("202203_202203_연령별인구현황_월간.csv", encoding="euc-kr")
         
         df_popkr["행정구역"] = df_popkr["행정구역"].str.split("(").str[0]
@@ -31,7 +31,7 @@ class PopGraph:
         self.df_popkrMT = df_popkrMT
         self.df_popkrFT = df_popkrFT
         
-    def plot_pop(self, loc, popmax=7e4, poptick=1e4):#plot 세부적으로 꾸미기
+    def plot_pop(self, loc, popmax=7e4, poptick=1e4):
         fig, axs = plt.subplots(ncols=2, sharey = True, figsize=(10, 5), gridspec_kw={"wspace": 0})
         c_M = "#3366ff"
         c_F = "#ff6699"
@@ -76,14 +76,14 @@ class PopGraph:
         return fig
     
     
-    def plot(self, loc):# 해당 데이터에 따른 popmax, poptick 맞춤
+    def plot(self, loc):
         data_where = self.df_popkrFT[loc]
 
         if max(data_where) < 5000:
             popmax = 6e3
             poptick = 1e3
             
-            fig = self.plot_pop(loc, popmax, poptick)# def 함수도 self.함수 가능
+            fig = self.plot_pop(loc, popmax, poptick)
 
         elif 5000< max(data_where) <10000:
             popmax = 12e3
@@ -100,27 +100,19 @@ class PopGraph:
             fig = self.plot_pop(loc)
             
         fig.show()
-        plt.show()#plot 보여줌
-        
-        
-        
-
-        
-        
-
+        plt.show()
 
 def main():
-    # 시각화 설정
     sns.set_context("talk")
     sns.set_style("white")
 
     plt.rcParams['font.family'] = ['gulim', 'sans-serif']
-    plt.rcParams['axes.unicode_minus'] = False# 여기까지는 plot 한글 및 스타일 설정
+    plt.rcParams['axes.unicode_minus'] = False
     
     where = "전라북도" + input("지역명을 입력하시오.")
 
-    pop_jb = PopGraph("202203_202203_연령별인구현황_월간.csv")# 클래스
-    pop_jb.plot(where)#plot함수 실행
+    pop_jb = PopGraph("202203_202203_연령별인구현황_월간.csv")
+    pop_jb.plot(where)
     
 if __name__ == "__main__":
     main()

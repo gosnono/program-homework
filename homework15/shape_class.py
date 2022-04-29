@@ -33,10 +33,10 @@ class Triangle(Shape):
         return self.h * self.v * 1/2
     
     def perimeter(self):
-        return self.h + self.v + sqrt(pow(self.h,2) + pow(self.v, 2))
+        return self.h + self.v + sqrt(pow(self.h, 2) + pow(self.v, 2))
 
 
-class Circle(Shape): # 원
+class Circle(Shape):
     def __init__(self, r):
         self.r = r
         
@@ -61,8 +61,8 @@ class RegularHexagon(Shape):
 
 def main():
     
-    shapes = [Rectangle(4 ,5), 
-              Triangle(4 ,5), 
+    shapes = [Rectangle(4, 5),
+              Triangle(4, 5),
               Circle(4), 
               RegularHexagon(4)]
     
