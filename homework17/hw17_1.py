@@ -3,6 +3,8 @@ import tkinter as tk
 from requests import delete
 
 def caesar_encode(text:str, shift:int= 3)-> str:
+    text = ent_word_e.get()
+    shift: int = 3
     t_list = []
 
     for n in text:
@@ -12,10 +14,12 @@ def caesar_encode(text:str, shift:int= 3)-> str:
             temp = chr(ord('Z') - ord('C') + ord(n))
 
 
-        t_list.append(temp)
-    return "".join(t_list)
+    ent_result_e.delete(0, "end")
+    ent_result_e.insert(0, "".join(t_list))
 
 def caesar_decode(text:str, shift:int= 3)-> str:
+    text = ent_code.get()
+    shift: int = 3
     t_list = []
 
     for n in text:
@@ -24,8 +28,9 @@ def caesar_decode(text:str, shift:int= 3)-> str:
         elif ord(n) < ord('B'):
             temp = chr(ord('D') - ord('A') + ord(n))
 
-        t_list.append(temp)
-    return "".join(t_list)
+
+    ent_result_d.delete(0, "end")
+    ent_result_d.insert(0, "".join(t_list))
 
 window = tk.Tk()
 window.title("암호 설정 및 해독기")
