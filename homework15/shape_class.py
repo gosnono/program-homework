@@ -57,6 +57,11 @@ class RegularHexagon(Shape):
     def perimeter(self):
         return self.r * 6
 
+    def __repr__(self):
+        return (("사각형(밑변={}, 높이={}").format(self.h self.v))
+
+    def __repr__(self):
+        return
 
 def main():
     
@@ -73,3 +78,13 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+    a = [1, 2, 3]
+    b = [4, 5, 6]
+    print(a+b)
+
+
+
+
+
+

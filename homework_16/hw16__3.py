@@ -1,3 +1,5 @@
+import tkinter as tk
+from tkinter import simpledialog
 import random
 
 # 초성 리스트. 00 ~ 18
@@ -9,6 +11,8 @@ JUNGSUNG_LIST = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 
 JONGSUNG_LIST = [' ', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ',
                  'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ']
 
+def gui_input(text: str) -> str:
+    return simpledialog.askstring(title="초성게임", prompt=text)
 
 def chosung_game(words):
     print("초성게임 START!")
@@ -31,12 +35,18 @@ def chosung_game(words):
         r_lst = "".join(r_lst)
 
         print("{}".format(r_lst))
-        answer = input("정답을 입력하세요.")
+        answer = gui_input("{}에 정답을 입력하세요.".format(r_lst))
 
-    if trials > 0:
-        print("성공입니다.")
-    else:
-        print("실패입니다.".format(r_list))
+        if word == answer:
+            print("성공입니다.")
+            break
+
+        else:
+            trials -=1
+            print("실패입니다.")
+
+window = tk.Tk()
+window.withdraw()
 
 def main():
     words = ["스파이더맨", "닥터스트레인지", "아이언맨", "토르", "헐크", "캡틴아메리카"]
